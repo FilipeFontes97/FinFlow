@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FinFlow.Api/FinFlow.Api.csproj" />
+  <Project Path="FinFlow.Application/FinFlow.Application.csproj" />
+  <Project Path="FinFlow.Client/FinFlow.Client.csproj" />
+  <Project Path="FinFlow.Domain/FinFlow.Domain.csproj" />
+</Solution>
