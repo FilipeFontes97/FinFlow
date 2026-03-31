@@ -1,4 +1,7 @@
-﻿using FinFlow.Application.Interfaces;
+﻿using Azure.Core;
+using FinFlow.Application.DTOs.Requests;
+using FinFlow.Application.Interfaces;
+using FinFlow.Application.Mappers;
 using FinFlow.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +22,7 @@ namespace FinFlow.Api.Controllers
         public async Task<IActionResult> GetAllFinancialAccount()
         {
             var accounts = await _service.GetAllFinancialAccountAsync();
-            return Ok(accounts);
+            return Ok(accounts.Select(FinancialAccountMapper.ToResponse));
         }
 
         [HttpGet("getFinancialAccountById/{id}")]
@@ -27,22 +30,23 @@ namespace FinFlow.Api.Controllers
         {
             var account = await _service.GetFinancialAccountByIdAsync(id);
             if(account == null) { return NotFound(); }
-            return Ok(account);
+            return Ok(FinancialAccountMapper.ToResponse(account));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateFinancialAccountAsync([FromBody] FinancialAccount account)
+        public async Task<IActionResult> CreateFinancialAccountAsync([FromBody] CreateFinancialAccountRequest request)
         {
-            var createdAccount = await _service.CreateFinancialAccountAsync(account);
+            var entity = FinancialAccountMapper.FromCreateRequest(request);
+            var createdAccount = await _service.CreateFinancialAccountAsync(entity);
             return CreatedAtAction(nameof(GetFinancialAccountById), new { id = createdAccount.Id }, createdAccount);
         }
 
         [HttpPut("updateFinancialAccout/{id}")]
-        public async Task<IActionResult> UpdateFinancialAccountAsync(Guid id, [FromBody] FinancialAccount account)
+        public async Task<IActionResult> UpdateFinancialAccountAsync(Guid id, [FromBody] UpdateFinancialAccountRequest request)
         {
-            var updatedAccount = await _service.UpdateAsync(id, account);
+            var updatedAccount = await _service.UpdateAsync(id, request);
             if (updatedAccount == null) { return NotFound(); }
-            return Ok(updatedAccount);
+            return Ok(FinancialAccountMapper.ToResponse(updatedAccount));
         }
 
         [HttpDelete("deleteFinancialAccount/{id}")]

@@ -1,4 +1,6 @@
-﻿using FinFlow.Application.Interfaces;
+﻿using FinFlow.Application.DTOs.Requests;
+using FinFlow.Application.Interfaces;
+using FinFlow.Application.Mappers;
 using FinFlow.Domain.Models;
 
 namespace FinFlow.Application.Services
@@ -30,7 +32,7 @@ namespace FinFlow.Application.Services
             return account;
         }
 
-        public async Task<FinancialAccount?> UpdateAsync(Guid id, FinancialAccount account)
+        public async Task<FinancialAccount?> UpdateAsync(Guid id, UpdateFinancialAccountRequest request)
         {
             var financialAccount = await _repository.GetFinancialAccountByIdAsync(id);
             if (financialAccount == null)
@@ -38,11 +40,7 @@ namespace FinFlow.Application.Services
                 return null;
             }
 
-            financialAccount.Name = account.Name;
-            financialAccount.Type = account.Type;
-            financialAccount.ValueInvested = account.ValueInvested;
-            financialAccount.CurrentValue = account.CurrentValue;
-            financialAccount.Notes = account.Notes;
+            FinancialAccountMapper.ApplyUpdate(financialAccount, request);
 
             await _repository.UpdateAsync(financialAccount);
             await _repository.SaveChangesAsync();
