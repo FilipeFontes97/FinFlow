@@ -2,7 +2,6 @@
 using FinFlow.Application.DTOs.Requests;
 using FinFlow.Application.Interfaces;
 using FinFlow.Application.Mappers;
-using FinFlow.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinFlow.Api.Controllers
