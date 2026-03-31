@@ -3,4 +3,5 @@
   <Project Path="FinFlow.Application/FinFlow.Application.csproj" />
   <Project Path="FinFlow.Client/FinFlow.Client.csproj" />
   <Project Path="FinFlow.Domain/FinFlow.Domain.csproj" />
+  <Project Path="FinFlow.Infrastructure/FinFlow.Infrastructure.csproj" />
 </Solution>

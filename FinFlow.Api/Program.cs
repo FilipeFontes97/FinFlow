@@ -1,23 +1,45 @@
+using FinFlow.Application.Interfaces;
+using FinFlow.Application.Services;
+using FinFlow.Infrastructure.Data;
+using FinFlow.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Register DbContext
+builder.Services.AddDbContext<FinFlowDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add controllers, swagger, etc.
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+// Add Services
+builder.Services.AddScoped<IFinancialAccountService, FinancialAccountService>();
+
+// Add Repositories
+builder.Services.AddScoped<IFinancialAccountRepository, FinancialAccountRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    // Generate Swagger/OpenAPI JSON at /swagger/v1/swagger.json
+    app.UseSwagger();
+
+    app.UseSwaggerUI(c =>
+    {
+        // Default generated JSON endpoint
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+        c.RoutePrefix = "swagger";
+    });
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowAll");
+app.UseAuthentication();
 app.UseAuthorization();
-
+// Serve uploaded files from wwwroot (e.g. /uploads/filename)
+app.UseStaticFiles();
 app.MapControllers();
-
 app.Run();
