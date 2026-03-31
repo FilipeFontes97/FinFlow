@@ -1,4 +1,5 @@
-﻿using FinFlow.Domain.Models;
+﻿using FinFlow.Application.DTOs.Requests;
+using FinFlow.Domain.Models;
 
 namespace FinFlow.Application.Interfaces
 {
@@ -7,7 +8,7 @@ namespace FinFlow.Application.Interfaces
         Task<IEnumerable<FinancialAccount>> GetAllFinancialAccountAsync();
         Task<FinancialAccount?> GetFinancialAccountByIdAsync(Guid id);
         Task<FinancialAccount> CreateFinancialAccountAsync(FinancialAccount account);
-        Task<FinancialAccount?> UpdateAsync(Guid id, FinancialAccount account);
+        Task<FinancialAccount?> UpdateAsync(Guid id, UpdateFinancialAccountRequest request);
         Task<bool> DeleteAsync(Guid id);
     }
 }
