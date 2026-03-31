@@ -1,4 +1,5 @@
 ﻿using FinFlow.Application.DTOs.Requests;
+using FinFlow.Application.DTOs.Responses;
 using FinFlow.Application.Interfaces;
 using FinFlow.Application.Mappers;
 using FinFlow.Domain.Models;
@@ -15,9 +16,19 @@ namespace FinFlow.Application.Services
             _repository = repository;
         }
 
-        public async Task<IEnumerable<FinancialAccount>> GetAllFinancialAccountAsync()
+        public async Task<FinancialAccountListResponse> GetAllFinancialAccountAsync()
         {
-            return await _repository.GetAllFinancialAccountAsync();
+            var accounts = await _repository.GetAllFinancialAccountAsync();
+
+            var responseItems = accounts.Select(FinancialAccountMapper.ToResponse).ToList();
+
+            var total = responseItems.Sum(a => a.CurrentValue);
+
+            return new FinancialAccountListResponse
+            {
+                FinancialAccountList = responseItems,
+                TotalCurrentValue = total
+            };
         }
 
         public async Task<FinancialAccount?> GetFinancialAccountByIdAsync(Guid id)
