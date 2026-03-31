@@ -3,10 +3,12 @@
     public enum FinancialAccountType
     {
         EmergencyFund,
-        InvestorFund,
         CheckingAccount,
-        CryptoCurrency,
-        FreedomFund,
+        Savings,
+        Crypto,
+        Stocks,
+        ETF,
+        Cash,
         Other
     }
 }
