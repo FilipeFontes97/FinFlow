@@ -25,16 +25,32 @@ public class FinFlowDbContext : DbContext
             entity.Property(p => p.Name).HasMaxLength(100).IsRequired();
             entity.Property(p => p.Notes).HasMaxLength(500);
             entity.Property(p => p.Type).HasConversion<string>().HasMaxLength(50).IsRequired();
+            entity.Property(e => e.ValueInvested).HasPrecision(18, 2);
+
+            entity.Property(e => e.CurrentValue).HasPrecision(18, 2);
+
         });
 
         modelBuilder.Entity<FixedExpenses>(entity =>
         {
             entity.Property(p => p.Description).HasMaxLength(200).IsRequired();
+            entity.Property(e => e.MonthlyAmount).HasPrecision(18, 2);
         });
 
         modelBuilder.Entity<Debt>(entity =>
         {
             entity.Property(p => p.ItemName).HasMaxLength(100).IsRequired();
+            entity.Property(e => e.TotalAmount).HasPrecision(18, 2);
+            entity.Property(e => e.AmountPaid).HasPrecision(18, 2);
+        });
+
+        modelBuilder.Entity<DebtPayment>(entity =>
+        {
+            entity.Property(e => e.Amount).HasPrecision(18, 2);
+
+            entity.Property(p => p.Date)
+                          .HasColumnName("Date");
+
         });
     }
 }
