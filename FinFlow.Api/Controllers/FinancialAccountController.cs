@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using FinFlow.Application.DTOs.Requests;
+using FinFlow.Application.DTOs.Responses;
 using FinFlow.Application.Interfaces;
 using FinFlow.Application.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +21,9 @@ namespace FinFlow.Api.Controllers
         [HttpGet ("myFinancialAccounts")]
         public async Task<IActionResult> GetAllFinancialAccount()
         {
-            var accounts = await _service.GetAllFinancialAccountAsync();
-            return Ok(accounts.Select(FinancialAccountMapper.ToResponse));
+            var result = await _service.GetAllFinancialAccountAsync();
+
+            return Ok(result);
         }
 
         [HttpGet("getFinancialAccountById/{id}")]
