@@ -1,6 +1,4 @@
-﻿using Azure.Core;
-using FinFlow.Application.DTOs.Requests;
-using FinFlow.Application.DTOs.Responses;
+﻿using FinFlow.Application.DTOs.Requests;
 using FinFlow.Application.Interfaces;
 using FinFlow.Application.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -31,14 +29,13 @@ namespace FinFlow.Api.Controllers
         {
             var account = await _service.GetFinancialAccountByIdAsync(id);
             if(account == null) { return NotFound(); }
-            return Ok(FinancialAccountMapper.ToResponse(account));
+            return Ok(account);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateFinancialAccountAsync([FromBody] CreateFinancialAccountRequest request)
         {
-            var entity = FinancialAccountMapper.FromCreateRequest(request);
-            var createdAccount = await _service.CreateFinancialAccountAsync(entity);
+            var createdAccount = await _service.CreateFinancialAccountAsync(request);
             return CreatedAtAction(nameof(GetFinancialAccountById), new { id = createdAccount.Id }, createdAccount);
         }
 
@@ -47,7 +44,7 @@ namespace FinFlow.Api.Controllers
         {
             var updatedAccount = await _service.UpdateAsync(id, request);
             if (updatedAccount == null) { return NotFound(); }
-            return Ok(FinancialAccountMapper.ToResponse(updatedAccount));
+            return Ok(updatedAccount);
         }
 
         [HttpDelete("deleteFinancialAccount/{id}")]
@@ -57,6 +54,5 @@ namespace FinFlow.Api.Controllers
             if (!deleted) return NotFound();
             return NoContent();
         }
-
     }
 }

@@ -31,19 +31,22 @@ namespace FinFlow.Application.Services
             };
         }
 
-        public async Task<FinancialAccount?> GetFinancialAccountByIdAsync(Guid id)
+        public async Task<FinancialAccountResponse?> GetFinancialAccountByIdAsync(Guid id)
         {
-            return await _repository.GetFinancialAccountByIdAsync(id);  
+            var entity = await _repository.GetFinancialAccountByIdAsync(id);
+            if (entity == null) return null;
+            return FinancialAccountMapper.ToResponse(entity);
         }
 
-        public async Task<FinancialAccount> CreateFinancialAccountAsync(FinancialAccount account)
+        public async Task<FinancialAccountResponse> CreateFinancialAccountAsync(CreateFinancialAccountRequest request)
         {
-            await _repository.AddFinancialAccountAsync(account);
+            var entity = FinancialAccountMapper.FromCreateRequest(request);
+            await _repository.AddFinancialAccountAsync(entity);
             await _repository.SaveChangesAsync();
-            return account;
+            return FinancialAccountMapper.ToResponse(entity);
         }
 
-        public async Task<FinancialAccount?> UpdateAsync(Guid id, UpdateFinancialAccountRequest request)
+        public async Task<FinancialAccountResponse?> UpdateAsync(Guid id, UpdateFinancialAccountRequest request)
         {
             var financialAccount = await _repository.GetFinancialAccountByIdAsync(id);
             if (financialAccount == null)
@@ -56,7 +59,7 @@ namespace FinFlow.Application.Services
             await _repository.UpdateAsync(financialAccount);
             await _repository.SaveChangesAsync();
 
-            return financialAccount;
+            return FinancialAccountMapper.ToResponse(financialAccount);
         }
                 
 
