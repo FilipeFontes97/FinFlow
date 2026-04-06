@@ -8,7 +8,7 @@ namespace FinFlow.Application.DTOs.Responses.FixedExpenses
         public FixedExpensesCategory Category { get; set; }
         public string? Description { get; set; }
         public decimal MonthlyAmount { get; set; }
-        public DateTime? PaymentDate { get; set; }
+        public int? PaymentDay { get; set; }
         public string? Notes { get; set; }
     }
 }

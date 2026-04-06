@@ -33,8 +33,8 @@ public class FinFlowDbContext : DbContext
 
         modelBuilder.Entity<FixedExpense>(entity =>
         {
-            entity.Property(p => p.Description).HasMaxLength(200).IsRequired();
             entity.Property(e => e.MonthlyAmount).HasPrecision(18, 2);
+            entity.Property(p => p.Category).HasConversion<string>().HasMaxLength(100).IsRequired();
         });
 
         modelBuilder.Entity<Debt>(entity =>
