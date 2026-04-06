@@ -1,6 +1,5 @@
 ﻿using FinFlow.Application.DTOs.Requests.Debt;
 using FinFlow.Application.Interfaces.Debts;
-using FinFlow.Application.Mappers.Debts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinFlow.Api.Controllers

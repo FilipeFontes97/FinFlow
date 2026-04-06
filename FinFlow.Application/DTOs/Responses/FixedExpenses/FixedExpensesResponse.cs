@@ -1,8 +1,11 @@
-﻿namespace FinFlow.Domain.Models
+﻿using FinFlow.Domain.Enums;
+
+namespace FinFlow.Application.DTOs.Responses.FixedExpenses
 {
-    public class FixedExpenses
+    public class FixedExpensesResponse
     {
         public Guid Id { get; set; }
+        public FixedExpensesCategory Category { get; set; }
         public string? Description { get; set; }
         public decimal MonthlyAmount { get; set; }
         public DateTime? PaymentDate { get; set; }

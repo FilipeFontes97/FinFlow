@@ -1,10 +1,13 @@
 using FinFlow.Application.Interfaces;
 using FinFlow.Application.Interfaces.Debts;
+using FinFlow.Application.Interfaces.FixedExpenses;
 using FinFlow.Application.Services;
 using FinFlow.Application.Services.Debts;
+using FinFlow.Application.Services.FixedExpenses;
 using FinFlow.Infrastructure.Data;
 using FinFlow.Infrastructure.Repositories;
 using FinFlow.Infrastructure.Repositories.Debts;
+using FinFlow.Infrastructure.Repositories.FixedExpenses;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,12 +18,16 @@ builder.Services.AddCors(options =>
     {
         policy
             .WithOrigins(
+                "http://localhost:5173",
+                "https://localhost:5173",
+                "http://localhost:5246",
                 "https://localhost:5246"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
+
 
 builder.Services.AddDbContext<FinFlowDbContext>(options =>
     options.UseSqlServer(
@@ -36,6 +43,8 @@ builder.Services.AddScoped<IFinancialAccountService, FinancialAccountService>();
 builder.Services.AddScoped<IFinancialAccountRepository, FinancialAccountRepository>();
 builder.Services.AddScoped<IDebtService, DebtService>();
 builder.Services.AddScoped<IDebtRepository, DebtRepository>();
+builder.Services.AddScoped<IFixedExpensesService, FixedExpensesService>();
+builder.Services.AddScoped<IFixedExpensesRepository, FixedExpensesRepository>();
 
 var app = builder.Build();
 

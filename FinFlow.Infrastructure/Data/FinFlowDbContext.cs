@@ -12,7 +12,7 @@ public class FinFlowDbContext : DbContext
 
     //DbSets — each entity of domain represents a table.
     public DbSet<FinancialAccount> FinancialAccounts => Set<FinancialAccount>();
-    public DbSet<FixedExpenses> FixedExpenses => Set<FixedExpenses>();
+    public DbSet<FixedExpense> FixedExpenses => Set<FixedExpense>();
     public DbSet<Debt> Debts => Set<Debt>();
     public DbSet<DebtPayment> DebtPayments => Set<DebtPayment>();
 
@@ -31,7 +31,7 @@ public class FinFlowDbContext : DbContext
 
         });
 
-        modelBuilder.Entity<FixedExpenses>(entity =>
+        modelBuilder.Entity<FixedExpense>(entity =>
         {
             entity.Property(p => p.Description).HasMaxLength(200).IsRequired();
             entity.Property(e => e.MonthlyAmount).HasPrecision(18, 2);
