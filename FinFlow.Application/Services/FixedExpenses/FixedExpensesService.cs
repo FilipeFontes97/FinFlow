@@ -36,7 +36,7 @@ namespace FinFlow.Application.Services.FixedExpenses
                 Category = request.Category,
                 Description = request.Description,
                 MonthlyAmount = request.MonthlyAmount,
-                PaymentDate = request.PaymentDate,
+                PaymentDay = request.PaymentDay,
                 Notes = request.Notes
             };
 
@@ -53,7 +53,7 @@ namespace FinFlow.Application.Services.FixedExpenses
             fixedExpense.Category = request.Category;
             fixedExpense.Description = request.Description;
             fixedExpense.MonthlyAmount = request.MonthlyAmount;
-            fixedExpense.PaymentDate = request.PaymentDate;
+            fixedExpense.PaymentDay = request.PaymentDay;
             fixedExpense.Notes = request.Notes;
 
             await _fixedExpensesRepository.UpdateAsync(fixedExpense);

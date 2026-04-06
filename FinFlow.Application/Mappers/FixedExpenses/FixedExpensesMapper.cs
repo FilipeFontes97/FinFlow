@@ -13,7 +13,7 @@ namespace FinFlow.Application.Mappers.FixedExpenses
                Category = entity.Category,
                Description = entity.Description,
                MonthlyAmount = entity.MonthlyAmount,
-               PaymentDate = entity.PaymentDate,
+               PaymentDay = entity.PaymentDay,
                Notes = entity.Notes,
             };
         }
