@@ -1,9 +1,11 @@
 using FinFlow.Application.Interfaces;
 using FinFlow.Application.Interfaces.Debts;
 using FinFlow.Application.Interfaces.FixedExpenses;
+using FinFlow.Application.Interfaces.InvestmentRecords;
 using FinFlow.Application.Services;
 using FinFlow.Application.Services.Debts;
 using FinFlow.Application.Services.FixedExpenses;
+using FinFlow.Application.Services.InvestmentRecords;
 using FinFlow.Infrastructure.Data;
 using FinFlow.Infrastructure.Repositories;
 using FinFlow.Infrastructure.Repositories.Debts;
@@ -45,6 +47,7 @@ builder.Services.AddScoped<IDebtService, DebtService>();
 builder.Services.AddScoped<IDebtRepository, DebtRepository>();
 builder.Services.AddScoped<IFixedExpensesService, FixedExpensesService>();
 builder.Services.AddScoped<IFixedExpensesRepository, FixedExpensesRepository>();
+builder.Services.AddScoped<IInvestmentReportService, InvestmentReportService>();
 
 var app = builder.Build();
 
