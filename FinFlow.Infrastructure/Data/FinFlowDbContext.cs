@@ -26,9 +26,8 @@ public class FinFlowDbContext : DbContext
             entity.Property(p => p.Notes).HasMaxLength(500);
             entity.Property(p => p.Type).HasConversion<string>().HasMaxLength(50).IsRequired();
             entity.Property(e => e.ValueInvested).HasPrecision(18, 2);
-
             entity.Property(e => e.CurrentValue).HasPrecision(18, 2);
-
+            entity.Property(p => p.DateCreated).HasColumnName("DateCreated");
         });
 
         modelBuilder.Entity<FixedExpense>(entity =>
