@@ -10,6 +10,7 @@ using FinFlow.Infrastructure.Data;
 using FinFlow.Infrastructure.Repositories;
 using FinFlow.Infrastructure.Repositories.Debts;
 using FinFlow.Infrastructure.Repositories.FixedExpenses;
+using FinFlow.Infrastructure.Repositories.InvestmentRecords;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +48,8 @@ builder.Services.AddScoped<IDebtService, DebtService>();
 builder.Services.AddScoped<IDebtRepository, DebtRepository>();
 builder.Services.AddScoped<IFixedExpensesService, FixedExpensesService>();
 builder.Services.AddScoped<IFixedExpensesRepository, FixedExpensesRepository>();
+builder.Services.AddScoped<IInvestmentTransactionRepository, InvestmentTransactionRepository>();
+builder.Services.AddScoped<IInvestmentService, InvestmentService>();
 builder.Services.AddScoped<IInvestmentReportService, InvestmentReportService>();
 
 var app = builder.Build();

@@ -1,37 +1,36 @@
 ﻿using FinFlow.Application.DTOs.Responses.InvestmentRecords;
-using FinFlow.Application.Interfaces;
 using FinFlow.Application.Interfaces.InvestmentRecords;
-using FinFlow.Domain.Enums;
 
 namespace FinFlow.Application.Services.InvestmentRecords
 {
     public class InvestmentReportService : IInvestmentReportService
     {
-        private readonly IFinancialAccountRepository _financialAccountRepository;
+        private readonly IInvestmentTransactionRepository _investmentTransactionRepository;
 
-        public InvestmentReportService(IFinancialAccountRepository financialAccountRepository)
+        public InvestmentReportService(
+            IInvestmentTransactionRepository investmentTransactionRepository)
         {
-            _financialAccountRepository = financialAccountRepository;
+            _investmentTransactionRepository = investmentTransactionRepository;
         }
+
         public async Task<InvestmentSummaryResponse> GetAllInvestmentsByYearAsync()
         {
-           var accounts = await _financialAccountRepository.GetAllFinancialAccountAsync();
+            var transactions = await _investmentTransactionRepository.GetAllAsync();
 
-            var investmentsByYear = accounts
-                .Where(i => i.Type == FinancialAccountType.ETF || i.Type == FinancialAccountType.Stocks || i.Type == FinancialAccountType.Crypto)
-                .GroupBy(i => i.DateCreated.Year)
+            var investmentsByYear = transactions
+                .GroupBy(t => t.InvestmentDate.Year)
                 .Select(g => new InvestmentByYearResponse
                 {
                     Year = g.Key,
-                    TotalInvested = g.Sum(i => i.ValueInvested)
+                    TotalInvested = g.Sum(x => x.Amount)
                 })
+                .OrderBy(x => x.Year)
                 .ToList();
-
 
             return new InvestmentSummaryResponse
             {
                 InvestmentsByYear = investmentsByYear,
-                TotalInvested = investmentsByYear.Sum(i => i.TotalInvested)
+                TotalInvested = investmentsByYear.Sum(x => x.TotalInvested)
             };
         }
     }
