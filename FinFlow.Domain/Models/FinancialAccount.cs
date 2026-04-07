@@ -11,6 +11,6 @@ namespace FinFlow.Domain.Models
         public decimal CurrentValue { get; set; }
         public decimal Profit => CurrentValue - ValueInvested;
         public string? Notes { get; set; }
-        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+        public ICollection<InvestmentTransaction> InvestmentTransactions { get; set; } = new List<InvestmentTransaction>();
     }
 }

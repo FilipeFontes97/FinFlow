@@ -15,6 +15,7 @@ public class FinFlowDbContext : DbContext
     public DbSet<FixedExpense> FixedExpenses => Set<FixedExpense>();
     public DbSet<Debt> Debts => Set<Debt>();
     public DbSet<DebtPayment> DebtPayments => Set<DebtPayment>();
+    public DbSet<InvestmentTransaction> InvestmentTransactions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -27,7 +28,6 @@ public class FinFlowDbContext : DbContext
             entity.Property(p => p.Type).HasConversion<string>().HasMaxLength(50).IsRequired();
             entity.Property(e => e.ValueInvested).HasPrecision(18, 2);
             entity.Property(e => e.CurrentValue).HasPrecision(18, 2);
-            entity.Property(p => p.DateCreated).HasColumnName("DateCreated");
         });
 
         modelBuilder.Entity<FixedExpense>(entity =>
@@ -51,5 +51,11 @@ public class FinFlowDbContext : DbContext
                           .HasColumnName("Date");
 
         });
+
+        modelBuilder.Entity<InvestmentTransaction>()
+            .HasOne(i => i.FinancialAccount)
+            .WithMany(a => a.InvestmentTransactions)
+            .HasForeignKey(i => i.FinancialAccountId);
+
     }
 }
