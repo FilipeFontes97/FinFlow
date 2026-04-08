@@ -24,7 +24,7 @@ namespace FinFlow.Application.Services.InvestmentRecords
                     Year = g.Key,
                     TotalInvested = g.Sum(x => x.Amount)
                 })
-                .OrderBy(x => x.Year)
+                .OrderByDescending(x => x.Year)
                 .ToList();
 
             return new InvestmentSummaryResponse
