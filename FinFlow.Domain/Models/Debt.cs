@@ -8,6 +8,7 @@ namespace FinFlow.Domain.Models
         public string? ItemName { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal AmountPaid { get; set; }
+        public decimal RemainingAmount => TotalAmount - AmountPaid;
         public DateTime? LastPaymentDate { get; set; }
         public PaymentPortions PaymentPortions { get; set; }
         public string? Notes { get; set; }
