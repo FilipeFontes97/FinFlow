@@ -31,17 +31,19 @@ namespace FinFlow.Application.Services.Dashboard
             var investments = await _investmentsTransactionRepository.GetAllAsync();
 
             var assets = accounts.Sum(a => a.CurrentValue);
-            var totalDebts = debts.Sum(d => d.TotalAmount);
+            var totalDebts = debts.Where(d => d.DebtStatus == Domain.Enums.DebtStatus.InDebt).Sum(d => d.RemainingAmount);
             var monthlyFixedExpenses = fixedExpenses.Sum(f => f.MonthlyAmount);
             var allTimeInvested = investments.Sum(i => i.Amount);
             var netPosition = assets - totalDebts;
+
+
 
             var allocation = accounts.GroupBy(a => a.Type)
                 .Select(g => new AssetAllocationResponse
                 {
                     AccountType = g.Key.ToString(),
                     Amount = g.Sum(a => a.CurrentValue),
-                    Percentage = assets > 0 ? Math.Round(g.Sum(a => a.CurrentValue) / assets * 100) : 0
+                    Percentage = assets > 0 ? (g.Sum(a => a.CurrentValue) / assets * 100) : 0
                 }).OrderByDescending(a => a.Amount)
                  .ToList();
 
