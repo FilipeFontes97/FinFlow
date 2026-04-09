@@ -1,7 +1,6 @@
-﻿namespace FinFlow.Application.DTOs.Requests
+﻿namespace FinFlow.Application.DTOs.Requests.FinancialAccounts
 {
-
-    public class CreateFinancialAccountRequest
+    public class UpdateFinancialAccountRequest
     {
         public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
@@ -9,4 +8,5 @@
         public decimal CurrentValue { get; set; }
         public string? Notes { get; set; }
     }
+
 }

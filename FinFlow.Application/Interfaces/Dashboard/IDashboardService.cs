@@ -1,4 +1,4 @@
-﻿using FinFlow.Application.DTOs.Requests.Dashboard;
+﻿using FinFlow.Application.DTOs.Responses.Dashboard;
 
 namespace FinFlow.Application.Interfaces.Dashboard
 {
