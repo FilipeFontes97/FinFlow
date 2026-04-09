@@ -17,6 +17,8 @@ public class FinFlowDbContext : DbContext
     public DbSet<DebtPayment> DebtPayments => Set<DebtPayment>();
     public DbSet<InvestmentTransaction> InvestmentTransactions { get; set; }
 
+    public DbSet<UserSettings> UserSettings { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -56,6 +58,5 @@ public class FinFlowDbContext : DbContext
             .HasOne(i => i.FinancialAccount)
             .WithMany(a => a.InvestmentTransactions)
             .HasForeignKey(i => i.FinancialAccountId);
-
     }
 }

@@ -4,6 +4,7 @@ using FinFlow.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(FinFlowDbContext))]
-    partial class FinFlowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260408154514_Added userSettings table")]
+    partial class AddeduserSettingstable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,8 +178,8 @@ namespace FinFlow.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("FixedExpensesThresholdPercent")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("FixedExpensesThresholdPercent")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Income")
                         .HasColumnType("decimal(18,2)");

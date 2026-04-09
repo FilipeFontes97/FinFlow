@@ -19,6 +19,12 @@ namespace FinFlow.Application.Services.Debts
         public async Task<IEnumerable<DebtResponse>> GetAllDebtAsync()
         {
             var debts = await _debtRepository.GetAllDebtsAsync();
+
+            foreach (var debt in debts)
+            {
+                debt.Payments = debt.Payments.OrderByDescending(p => p.Date).ToList();
+            }
+
             return debts.Select(DebtMapper.ToResponse);
         }
 

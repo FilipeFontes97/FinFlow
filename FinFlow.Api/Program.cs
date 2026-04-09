@@ -3,17 +3,21 @@ using FinFlow.Application.Interfaces.Dashboard;
 using FinFlow.Application.Interfaces.Debts;
 using FinFlow.Application.Interfaces.FixedExpenses;
 using FinFlow.Application.Interfaces.InvestmentRecords;
-using FinFlow.Application.Services;
+using FinFlow.Application.Interfaces.Settings;
 using FinFlow.Application.Services.Dashboard;
 using FinFlow.Application.Services.Debts;
+using FinFlow.Application.Services.FinancialAccount;
 using FinFlow.Application.Services.FixedExpenses;
 using FinFlow.Application.Services.InvestmentRecords;
+using FinFlow.Application.Services.Settings;
 using FinFlow.Infrastructure.Data;
 using FinFlow.Infrastructure.Repositories;
 using FinFlow.Infrastructure.Repositories.Debts;
 using FinFlow.Infrastructure.Repositories.FixedExpenses;
 using FinFlow.Infrastructure.Repositories.InvestmentRecords;
+using FinFlow.Infrastructure.Repositories.Settings;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +58,16 @@ builder.Services.AddScoped<IInvestmentTransactionRepository, InvestmentTransacti
 builder.Services.AddScoped<IInvestmentService, InvestmentService>();
 builder.Services.AddScoped<IInvestmentReportService, InvestmentReportService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IUserSettingsService, UserSettingsService>();
+builder.Services.AddScoped<IUserSettingsRepository, UserSettingsRepository>();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter()
+        );
+    });
 
 var app = builder.Build();
 

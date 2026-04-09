@@ -1,5 +1,5 @@
-﻿using FinFlow.Application.DTOs.Requests;
-using FinFlow.Application.DTOs.Responses;
+﻿using FinFlow.Application.DTOs.Requests.FinancialAccounts;
+using FinFlow.Application.DTOs.Responses.FinancialAccounts;
 
 namespace FinFlow.Application.Interfaces
 {

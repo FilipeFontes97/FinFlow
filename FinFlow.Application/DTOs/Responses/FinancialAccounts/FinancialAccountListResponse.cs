@@ -1,4 +1,4 @@
-﻿namespace FinFlow.Application.DTOs.Responses
+﻿namespace FinFlow.Application.DTOs.Responses.FinancialAccounts
 {
     public class FinancialAccountListResponse
     {

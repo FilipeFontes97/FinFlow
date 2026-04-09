@@ -1,9 +1,9 @@
-﻿using FinFlow.Application.DTOs.Requests;
-using FinFlow.Application.DTOs.Responses;
+﻿using FinFlow.Application.DTOs.Requests.FinancialAccounts;
+using FinFlow.Application.DTOs.Responses.FinancialAccounts;
 using FinFlow.Domain.Enums;
 using FinFlow.Domain.Models;
 
-namespace FinFlow.Application.Mappers
+namespace FinFlow.Application.Mappers.FinancialAccounts
 {
     public static class FinancialAccountMapper
     {

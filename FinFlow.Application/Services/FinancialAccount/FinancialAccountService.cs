@@ -1,10 +1,9 @@
-﻿using FinFlow.Application.DTOs.Requests;
-using FinFlow.Application.DTOs.Responses;
+﻿using FinFlow.Application.DTOs.Requests.FinancialAccounts;
+using FinFlow.Application.DTOs.Responses.FinancialAccounts;
 using FinFlow.Application.Interfaces;
-using FinFlow.Application.Mappers;
-using FinFlow.Domain.Models;
+using FinFlow.Application.Mappers.FinancialAccounts;
 
-namespace FinFlow.Application.Services
+namespace FinFlow.Application.Services.FinancialAccount
 {
     public class FinancialAccountService : IFinancialAccountService
     {

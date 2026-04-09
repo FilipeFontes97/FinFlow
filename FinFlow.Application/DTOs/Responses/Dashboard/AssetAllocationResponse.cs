@@ -1,4 +1,4 @@
-﻿namespace FinFlow.Application.DTOs.Requests.Dashboard
+﻿namespace FinFlow.Application.DTOs.Responses.Dashboard
 {
     public class AssetAllocationResponse
     {
