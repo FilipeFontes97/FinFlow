@@ -1,8 +1,8 @@
 ﻿using FinFlow.Application.DTOs.Responses.Dashboard;
 using FinFlow.Application.DTOs.Responses.InvestmentRecords;
-using FinFlow.Application.Interfaces;
 using FinFlow.Application.Interfaces.Dashboard;
 using FinFlow.Application.Interfaces.Debts;
+using FinFlow.Application.Interfaces.FinancialAccounts;
 using FinFlow.Application.Interfaces.FixedExpenses;
 using FinFlow.Application.Interfaces.InvestmentRecords;
 using FinFlow.Application.Interfaces.Settings;

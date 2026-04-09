@@ -1,4 +1,4 @@
-﻿using FinFlow.Application.Interfaces;
+﻿using FinFlow.Application.Interfaces.FinancialAccounts;
 using FinFlow.Domain.Models;
 using FinFlow.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;

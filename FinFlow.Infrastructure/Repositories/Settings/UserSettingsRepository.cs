@@ -24,7 +24,8 @@ namespace FinFlow.Infrastructure.Repositories.Settings
            {
                Id = Guid.NewGuid(),
                Income = 0m,
-               FixedExpensesThresholdPercent = 33
+               FixedExpensesThresholdPercent = 33,
+               EmergencyFundTarget = 0m,
            };
 
            await _context.UserSettings.AddAsync(defaultSettings);

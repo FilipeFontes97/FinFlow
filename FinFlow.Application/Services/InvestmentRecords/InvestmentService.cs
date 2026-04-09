@@ -1,6 +1,6 @@
 ﻿using FinFlow.Application.DTOs.Requests.InvestmentRecords;
 using FinFlow.Application.DTOs.Responses.InvestmentRecords;
-using FinFlow.Application.Interfaces;
+using FinFlow.Application.Interfaces.FinancialAccounts;
 using FinFlow.Application.Interfaces.InvestmentRecords;
 using FinFlow.Domain.Models;
 

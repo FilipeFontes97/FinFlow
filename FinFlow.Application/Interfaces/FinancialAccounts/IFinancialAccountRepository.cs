@@ -1,6 +1,6 @@
 ﻿using FinFlow.Domain.Models;
 
-namespace FinFlow.Application.Interfaces
+namespace FinFlow.Application.Interfaces.FinancialAccounts
 {
     public interface IFinancialAccountRepository
     {

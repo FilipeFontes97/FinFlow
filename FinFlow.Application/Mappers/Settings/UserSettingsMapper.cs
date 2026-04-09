@@ -11,6 +11,8 @@ namespace FinFlow.Application.Mappers.Settings
             {
                 Income = entity.Income,
                 FixedExpensesThresholdPercent = entity.FixedExpensesThresholdPercent,
+                Name = entity.Name,
+                EmergencyFundTarget = entity.EmergencyFundTarget,
             };
         }
     }

@@ -1,7 +1,7 @@
 ﻿using FinFlow.Application.DTOs.Requests.FinancialAccounts;
 using FinFlow.Application.DTOs.Responses.FinancialAccounts;
 
-namespace FinFlow.Application.Interfaces
+namespace FinFlow.Application.Interfaces.FinancialAccounts
 {
     public interface IFinancialAccountService
     {
