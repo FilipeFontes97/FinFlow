@@ -1,5 +1,5 @@
 ﻿using FinFlow.Application.DTOs.Requests.FinancialAccounts;
-using FinFlow.Application.Interfaces;
+using FinFlow.Application.Interfaces.FinancialAccounts;
 using FinFlow.Application.Mappers;
 using Microsoft.AspNetCore.Mvc;
 

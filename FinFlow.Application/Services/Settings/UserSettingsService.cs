@@ -27,6 +27,8 @@ namespace FinFlow.Application.Services.Settings
 
             userSettings.Income = request.Income;
             userSettings.FixedExpensesThresholdPercent = request.FixedExpensesThresholdPercent;
+            userSettings.EmergencyFundTarget = request.EmergencyFundTarget;
+            userSettings.Name = request.Name;
 
             await _userSettingsRepository.SaveAsync(userSettings);
         }

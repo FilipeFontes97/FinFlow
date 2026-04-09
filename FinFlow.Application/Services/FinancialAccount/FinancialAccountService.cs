@@ -1,6 +1,6 @@
 ﻿using FinFlow.Application.DTOs.Requests.FinancialAccounts;
 using FinFlow.Application.DTOs.Responses.FinancialAccounts;
-using FinFlow.Application.Interfaces;
+using FinFlow.Application.Interfaces.FinancialAccounts;
 using FinFlow.Application.Mappers.FinancialAccounts;
 
 namespace FinFlow.Application.Services.FinancialAccount

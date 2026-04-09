@@ -1,5 +1,4 @@
 ﻿using FinFlow.Application.DTOs.Responses.InvestmentRecords;
-using System.Collections.Generic;
 
 namespace FinFlow.Application.DTOs.Responses.Dashboard
 {

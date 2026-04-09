@@ -1,6 +1,6 @@
-using FinFlow.Application.Interfaces;
 using FinFlow.Application.Interfaces.Dashboard;
 using FinFlow.Application.Interfaces.Debts;
+using FinFlow.Application.Interfaces.FinancialAccounts;
 using FinFlow.Application.Interfaces.FixedExpenses;
 using FinFlow.Application.Interfaces.InvestmentRecords;
 using FinFlow.Application.Interfaces.Settings;
@@ -60,6 +60,7 @@ builder.Services.AddScoped<IInvestmentReportService, InvestmentReportService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IUserSettingsService, UserSettingsService>();
 builder.Services.AddScoped<IUserSettingsRepository, UserSettingsRepository>();
+builder.Services.AddScoped<IFinancialProjectionService, FinancialProjectionService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
