@@ -58,7 +58,7 @@ namespace FinFlow.Application.Services.Dashboard
                 {
                     Year = g.Key,
                     TotalInvested = g.Sum(i => i.Amount)
-                }).OrderByDescending(i => i.Year)
+                }).OrderBy(i => i.Year)
                  .ToList();
 
             var signals = new List<DashboardSignalResponse>();
